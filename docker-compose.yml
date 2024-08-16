@@ -9,8 +9,8 @@ services:
       - db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/shareit
-      - SPRING_DATASOURCE_USERNAME=shareit
-      - SPRING_DATASOURCE_PASSWORD=shareit
+      - SPRING_DATASOURCE_USERNAME=dbuser
+      - SPRING_DATASOURCE_PASSWORD=12345
 
   db:
     image: postgres:16.1
@@ -18,8 +18,8 @@ services:
     ports:
       - "6541:5432"
     environment:
-      - POSTGRES_PASSWORD=shareit
-      - POSTGRES_USER=shareit
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_USER=dbuser
       - POSTGRES_DB=shareit
     healthcheck:
       test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
