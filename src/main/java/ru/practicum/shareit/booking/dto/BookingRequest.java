@@ -10,7 +10,7 @@ import lombok.Data;
 @Builder
 @Data
 public class BookingRequest {
-    Long itemId;
-    String start;
-    String end;
+    private Long itemId;
+    private String start;
+    private String end;
 }
