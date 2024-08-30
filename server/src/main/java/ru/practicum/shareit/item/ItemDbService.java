@@ -14,7 +14,6 @@ import ru.practicum.shareit.item.comment.CommentRepository;
 import ru.practicum.shareit.item.dto.ItemRequest;
 import ru.practicum.shareit.item.mappers.ItemMapper;
 import ru.practicum.shareit.request.ItemRequestRepository;
-import ru.practicum.shareit.request.mappers.RequestMapper;
 import ru.practicum.shareit.user.UserRepository;
 
 import java.sql.Timestamp;

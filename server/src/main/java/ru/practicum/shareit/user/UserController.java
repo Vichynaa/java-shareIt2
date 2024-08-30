@@ -3,15 +3,12 @@ package ru.practicum.shareit.user;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.user.dto.UserDto;
 import ru.practicum.shareit.user.dto.UserRequest;
 import ru.practicum.shareit.user.mappers.UserMapper;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * TODO Sprint add-controllers.

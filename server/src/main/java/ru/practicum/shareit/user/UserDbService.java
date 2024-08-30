@@ -2,7 +2,6 @@ package ru.practicum.shareit.user;
 
 import exception.ConflictException;
 import exception.NotFoundException;
-import exception.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
