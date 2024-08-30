@@ -11,7 +11,7 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     List<Booking> findByBookerId(Long requesterId);
 
-    @Query(value = "SELECT * FROM bookings WHERE booker_id = :bookerId AND item_id = :itemId AND end_time <= :timestamp", nativeQuery = true)
+    @Query(value = "SELECT * FROM bookings WHERE booker_id = :bookerId AND item_id = :itemId AND end_time < :timestamp", nativeQuery = true)
     Booking findPastBooking(@Param("bookerId") Long userId, @Param("itemId") Long itemId, @Param("timestamp") Timestamp timestamp);
 
     @Query("SELECT b FROM Booking AS b WHERE b.start < CURRENT_TIMESTAMP AND b.end > CURRENT_TIMESTAMP AND b.booker = ?1")
