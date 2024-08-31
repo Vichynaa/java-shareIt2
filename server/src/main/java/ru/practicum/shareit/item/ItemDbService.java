@@ -43,8 +43,7 @@ public class ItemDbService implements ItemInterface {
             Optional<ru.practicum.shareit.request.ItemRequest> optionalItemRequest = requestRepository.findById(itemRequest.getRequestId());
             if (optionalItemRequest.isPresent()) {
                 newItem.setRequest(optionalItemRequest.get());
-            }
-            else {
+            } else {
                 log.error("Error request с id - " + itemRequest.getRequestId() + " не найден");
                 throw new NotFoundException("Error request с id - " + itemRequest.getRequestId() + " не найден");
             }
