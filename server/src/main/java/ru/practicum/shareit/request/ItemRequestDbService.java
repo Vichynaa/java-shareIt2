@@ -18,6 +18,8 @@ public class ItemRequestDbService implements ItemRequestInterface {
     private final ItemRequestRepository itemRequestRepository;
     private final UserRepository userRepository;
 
+    @Transactional
+    @Override
     public ItemRequest create(Long userId, ItemRequestData itemRequestData) {
         if (!userRepository.existsById(userId)) {
             log.error("Error такого пользователя не существует");
@@ -29,6 +31,7 @@ public class ItemRequestDbService implements ItemRequestInterface {
         return itemRequestRepository.save(itemRequest);
     }
 
+    @Override
     public List<ItemRequest> getAllByUser(Long userId) {
         if (!userRepository.existsById(userId)) {
             log.error("Error такого пользователя не существует");
@@ -37,6 +40,7 @@ public class ItemRequestDbService implements ItemRequestInterface {
         return itemRequestRepository.findByOwnerId(userId);
     }
 
+    @Override
     public List<ItemRequest> getAllByOtherUsers(Long userId) {
         if (!userRepository.existsById(userId)) {
             log.error("Error такого пользователя не существует");
@@ -45,6 +49,7 @@ public class ItemRequestDbService implements ItemRequestInterface {
         return itemRequestRepository.findAllByOthersOwners(userId);
     }
 
+    @Override
     public ItemRequest getById(Long itemRequestId) {
         if (!itemRequestRepository.existsById(itemRequestId)) {
             log.error("Error запрос не найден");

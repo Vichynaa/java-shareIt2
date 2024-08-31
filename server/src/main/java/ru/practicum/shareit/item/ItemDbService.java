@@ -39,8 +39,15 @@ public class ItemDbService implements ItemInterface {
             throw new NotFoundException("Error такого пользователя не существует");
         }
         Item newItem = ItemMapper.mapToItem(itemRequest);
-        if (!(itemRequest.getRequestId() == null)) {
-            newItem.setRequest(requestRepository.findById(itemRequest.getRequestId()).get());
+        if (itemRequest.getRequestId() != null) {
+            Optional<ru.practicum.shareit.request.ItemRequest> optionalItemRequest = requestRepository.findById(itemRequest.getRequestId());
+            if (optionalItemRequest.isPresent()) {
+                newItem.setRequest(optionalItemRequest.get());
+            }
+            else {
+                log.error("Error request с id - " + itemRequest.getRequestId() + " не найден");
+                throw new NotFoundException("Error request с id - " + itemRequest.getRequestId() + " не найден");
+            }
         }
         newItem.setOwner(userRepository.findById(userId).get());
         return itemRepository.save(newItem);
