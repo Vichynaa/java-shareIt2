@@ -20,11 +20,11 @@ public class ItemRequest {
     private long id;
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    User owner;
+    private User owner;
     @Column(name = "created", nullable = false)
-    LocalDateTime date = LocalDateTime.now();
+    private LocalDateTime date = LocalDateTime.now();
     @Column(name = "description", nullable = false)
-    String description;
+    private String description;
     @OneToMany(mappedBy = "request")
     private List<Item> items = new ArrayList<>();
 }
