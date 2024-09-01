@@ -18,7 +18,7 @@ public class ItemRequestController {
     private final ItemRequestClient itemRequestClient;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestHeader("X-Sharer-User-Id") Long userId, @RequestBody ItemRequestData itemRequestData) {
+    public ResponseEntity<Object> create(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @RequestBody ItemRequestData itemRequestData) {
         log.info("POST /requests - добавление запроса пользователем с id - {}", userId);
         if (itemRequestData.getDescription().isBlank()) {
             log.error("Нельзя создать объект без указания поля - description");
@@ -28,13 +28,13 @@ public class ItemRequestController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> getRequestsByUser(@RequestHeader("X-Sharer-User-Id") Long userId) {
+    public ResponseEntity<Object> getRequestsByUser(@RequestHeader("${shareIt.headers.userHeader}") Long userId) {
         log.info("GET /requests с id - {}", userId);
         return itemRequestClient.getAllByUser(userId);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Object> getOthersUsersRequests(@RequestHeader("X-Sharer-User-Id") Long userId) {
+    public ResponseEntity<Object> getOthersUsersRequests(@RequestHeader("${shareIt.headers.userHeader}") Long userId) {
         log.info("GET /requests/all с id - {}", userId);
         return itemRequestClient.getAllByOtherUsers(userId);
     }

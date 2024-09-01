@@ -16,15 +16,15 @@ import static org.mockito.ArgumentMatchers.*;
 public class UserServiceTest {
 
     @Mock
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @InjectMocks
-    UserDbService userDbService;
+    private UserDbService userDbService;
 
     @Captor
     private ArgumentCaptor<User> userArgumentCaptor;
 
     @Test
-    void findUserById_whenUserFound_thenReturnUser() {
+    protected void findUserById_whenUserFound_thenReturnUser() {
         long userId = 1L;
         User expectedUser = new User();
         Mockito.when(userRepository.findById(userId)).thenReturn(Optional.of(expectedUser));
@@ -38,7 +38,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void findUserById_whenUserNotFound_thenReturnNotFoundException() {
+    protected void findUserById_whenUserNotFound_thenReturnNotFoundException() {
         long userId = 1L;
         Mockito.when(userRepository.existsById(userId)).thenReturn(false);
 
@@ -48,7 +48,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void update_whenUserFound_thenReturnUser() {
+    protected void update_whenUserFound_thenReturnUser() {
         long userId = 1L;
         User oldUser = new User();
         oldUser.setName("name");
@@ -72,7 +72,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void update_whenUserNotFound_thenReturnNotFoundException() {
+    protected void update_whenUserNotFound_thenReturnNotFoundException() {
         long userId = 1L;
         UserRequest userRequest = new UserRequest();
         userRequest.setName("name");
@@ -85,7 +85,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void deleteUserById_whenUserFound_thenReturnCorrectMessage() {
+    protected void deleteUserById_whenUserFound_thenReturnCorrectMessage() {
         long userId = 1L;
         String expectedMessage = "Пользователь с id - " + userId + ", удалил свой аккаунт";
         Mockito.when(userRepository.existsById(userId)).thenReturn(true);
@@ -98,7 +98,7 @@ public class UserServiceTest {
     }
 
     @Test
-    void deleteUserById_whenUserNotFound_thenReturnCorrectMessage() {
+    protected void deleteUserById_whenUserNotFound_thenReturnCorrectMessage() {
         long userId = 1L;
         Mockito.when(userRepository.existsById(userId)).thenReturn(false);
 
@@ -108,14 +108,14 @@ public class UserServiceTest {
     }
 
     @Test
-    void findAllUsers_thenVerify() {
+    protected void findAllUsers_thenVerify() {
         userDbService.findAll();
 
         Mockito.verify(userRepository).findAll();
     }
 
     @Test
-    void createUser_thenVerify() {
+    protected void createUser_thenVerify() {
         UserRequest userRequest = new UserRequest();
         userRequest.setName("name");
         userRequest.setEmail("email@email.ru");
@@ -124,6 +124,4 @@ public class UserServiceTest {
 
         Mockito.verify(userRepository).save(any(User.class));
     }
-
-
 }

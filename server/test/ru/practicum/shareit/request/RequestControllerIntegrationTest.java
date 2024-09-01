@@ -42,7 +42,7 @@ public class RequestControllerIntegrationTest {
 
     @SneakyThrows
     @Test
-    void getRequestById() {
+    protected void getRequestById() {
         long requestId = 1L;
         ItemRequest itemRequest = new ItemRequest();
         itemRequest.setOwner(new User());
@@ -56,7 +56,7 @@ public class RequestControllerIntegrationTest {
 
     @SneakyThrows
     @Test
-    void create() {
+    protected void create() {
         long userId = 1L;
         ItemRequestData itemRequestData = new ItemRequestData();
         itemRequestData.setDescription("description");

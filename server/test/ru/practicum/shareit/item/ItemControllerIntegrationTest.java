@@ -44,7 +44,7 @@ public class ItemControllerIntegrationTest {
 
     @SneakyThrows
     @Test
-    void getItemById() {
+    protected void getItemById() {
         long itemId = 1L;
         Item item = new Item();
         item.setId(1L);
@@ -60,7 +60,7 @@ public class ItemControllerIntegrationTest {
 
     @SneakyThrows
     @Test
-    void create() {
+    protected void create() {
         long userId = 1L;
         long requestId = 1L;
         ItemRequest itemRequest = new ItemRequest();

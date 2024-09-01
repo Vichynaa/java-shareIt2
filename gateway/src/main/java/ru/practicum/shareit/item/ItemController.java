@@ -21,7 +21,7 @@ public class ItemController {
     private final ItemClient itemClient;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public ResponseEntity<Object> create(@RequestHeader("${shareIt.headers.userHeader}") Long userId,
                                          @RequestBody ItemRequest itemRequest) {
         log.info("POST /items - добавление предмета пользователем с id - {}", userId);
         if (itemRequest.getAvailable() == null || (itemRequest.getName() == null ||
@@ -34,7 +34,7 @@ public class ItemController {
     }
 
     @PatchMapping("/{itemId}")
-    public ResponseEntity<Object> update(@RequestHeader("X-Sharer-User-Id") Long userId,
+    public ResponseEntity<Object> update(@RequestHeader("${shareIt.headers.userHeader}") Long userId,
                                          @PathVariable Long itemId, @RequestBody ItemRequest itemRequest) {
         log.info("PATCH /items/{}", userId);
         if (itemRequest.getDescription() != null && itemRequest.getDescription().isBlank()) {
@@ -55,21 +55,21 @@ public class ItemController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> getItemsByUser(@RequestHeader("X-Sharer-User-Id") Long userId) {
+    public ResponseEntity<Object> getItemsByUser(@RequestHeader("${shareIt.headers.userHeader}") Long userId) {
         log.info("GET /items с id - {}", userId);
         return itemClient.getItemsByUser(userId);
     }
 
     @GetMapping("/search")
     public ResponseEntity<Object> searchItems(@RequestParam Optional<String> text,
-                                              @RequestHeader("X-Sharer-User-Id") Long userId) {
+                                              @RequestHeader("${shareIt.headers.userHeader}") Long userId) {
         log.info("GET /items/search с текстом - {}", text);
         return itemClient.searchItems(text, userId);
     }
 
     @PostMapping("/{itemId}/comment")
     public ResponseEntity<Object> createComments(@PathVariable Long itemId,
-                                                 @RequestHeader("X-Sharer-User-Id") Long userId,
+                                                 @RequestHeader("${shareIt.headers.userHeader}") Long userId,
                                                  @RequestBody CommentRequest commentRequest) {
         log.info("POST /itemId/comment");
         ResponseEntity<Object> objectResponseEntity = itemClient.createComments(itemId, userId, commentRequest);

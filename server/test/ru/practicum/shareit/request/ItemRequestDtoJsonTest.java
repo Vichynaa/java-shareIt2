@@ -20,7 +20,7 @@ public class ItemRequestDtoJsonTest {
     private final JacksonTester<ItemRequestDto> json;
 
     @Test
-    void testItemRequestDto() throws Exception {
+    protected void testItemRequestDto() throws Exception {
         LocalDateTime createdDate = LocalDateTime.of(2024, 8, 30, 15, 30);
         ItemInfo item1 = new ItemInfo();
         item1.setId(1L);

@@ -21,31 +21,31 @@ public class BookingController {
     private final BookingInterface bookingService;
 
     @PostMapping
-    public BookingDto create(@RequestHeader("X-Sharer-User-Id") Long userId, @RequestBody BookingRequest bookingRequest) {
+    public BookingDto create(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @RequestBody BookingRequest bookingRequest) {
         log.info("POST /booking - добавление запроса пользователем с id - {}", userId);
         return BookingMapper.mapToBookingDto(bookingService.createRequest(bookingRequest, userId));
     }
 
     @PatchMapping("/{bookingId}")
-    public BookingDto answer(@RequestHeader("X-Sharer-User-Id") Long userId, @PathVariable Long bookingId, @RequestParam Optional<Boolean> approved) {
+    public BookingDto answer(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @PathVariable Long bookingId, @RequestParam Optional<Boolean> approved) {
         log.info("PATCH /bookings/{}", userId);
         return BookingMapper.mapToBookingDto(bookingService.setApproved(approved, bookingId, userId));
     }
 
     @GetMapping("/{bookingId}")
-    public BookingDto getBookingById(@RequestHeader("X-Sharer-User-Id") Long userId, @PathVariable Long bookingId) {
+    public BookingDto getBookingById(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @PathVariable Long bookingId) {
         log.info("GET /bookings/{}", bookingId);
         return BookingMapper.mapToBookingDto(bookingService.getBookingById(bookingId, userId));
     }
 
     @GetMapping
-    public List<BookingDto> getBookingsByRequesterId(@RequestHeader("X-Sharer-User-Id") Long userId, @RequestParam Optional<String> status) {
+    public List<BookingDto> getBookingsByRequesterId(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @RequestParam Optional<String> status) {
         log.info("GET /bookings by Requester Id");
         return bookingService.getBookingsByRequester(userId, status).stream().map(BookingMapper::mapToBookingDto).toList();
     }
 
     @GetMapping("/owner")
-    public List<BookingDto> getBookingsByOwnerId(@RequestHeader("X-Sharer-User-Id") Long userId, @RequestParam Optional<String> status) {
+    public List<BookingDto> getBookingsByOwnerId(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @RequestParam Optional<String> status) {
         log.info("GET /bookings by Owner Id");
         return bookingService.getBookingsByOwner(userId, status).stream().map(BookingMapper::mapToBookingDto).toList();
     }

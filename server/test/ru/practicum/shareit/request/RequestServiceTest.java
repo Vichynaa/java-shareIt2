@@ -29,7 +29,7 @@ public class RequestServiceTest {
     private ItemRequestDbService itemRequestDbService;
 
     @Test
-    void create_whenUserFound_thenReturnItemRequest() {
+    protected void create_whenUserFound_thenReturnItemRequest() {
         Long userId = 1L;
         ItemRequestData itemRequestData = new ItemRequestData();
         itemRequestData.setDescription("description");
@@ -51,7 +51,7 @@ public class RequestServiceTest {
     }
 
     @Test
-    void create_whenUserNotFound_thenReturnNotFoundException() {
+    protected void create_whenUserNotFound_thenReturnNotFoundException() {
         Long userId = 1L;
         ItemRequestData itemRequestData = new ItemRequestData();
         itemRequestData.setDescription("description");
@@ -66,7 +66,7 @@ public class RequestServiceTest {
     }
 
     @Test
-    void getAllByUser_whenUserFound_thenReturnItemRequests() {
+    protected void getAllByUser_whenUserFound_thenReturnItemRequests() {
         Long userId = 1L;
         List<ItemRequest> expectedItemRequests = List.of(new ItemRequest(), new ItemRequest());
 
@@ -81,7 +81,7 @@ public class RequestServiceTest {
     }
 
     @Test
-    void getAllByUser_whenUserNotFound_thenReturnNotFoundException() {
+    protected void getAllByUser_whenUserNotFound_thenReturnNotFoundException() {
         Long userId = 1L;
 
         Mockito.when(userRepository.existsById(userId)).thenReturn(false);
@@ -93,7 +93,7 @@ public class RequestServiceTest {
     }
 
     @Test
-    void getAllByOtherUsers_whenUserFound_thenReturnItemRequests() {
+    protected void getAllByOtherUsers_whenUserFound_thenReturnItemRequests() {
         Long userId = 1L;
         List<ItemRequest> expectedItemRequests = List.of(new ItemRequest(), new ItemRequest());
 
@@ -108,7 +108,7 @@ public class RequestServiceTest {
     }
 
     @Test
-    void getAllByOtherUsers_whenUserNotFound_thenReturnNotFoundException() {
+    protected void getAllByOtherUsers_whenUserNotFound_thenReturnNotFoundException() {
         Long userId = 1L;
 
         Mockito.when(userRepository.existsById(userId)).thenReturn(false);
@@ -120,7 +120,7 @@ public class RequestServiceTest {
     }
 
     @Test
-    void getById_whenItemRequestFound_thenReturnItemRequest() {
+    protected void getById_whenItemRequestFound_thenReturnItemRequest() {
         Long itemRequestId = 1L;
         ItemRequest expectedItemRequest = new ItemRequest();
 
@@ -135,7 +135,7 @@ public class RequestServiceTest {
     }
 
     @Test
-    void getById_whenItemRequestNotFound_thenReturnFoundException() {
+    protected void getById_whenItemRequestNotFound_thenReturnFoundException() {
         Long itemRequestId = 1L;
 
         Mockito.when(itemRequestRepository.existsById(itemRequestId)).thenReturn(false);

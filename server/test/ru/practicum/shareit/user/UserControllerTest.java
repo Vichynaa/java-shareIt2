@@ -23,7 +23,7 @@ public class UserControllerTest {
     private UserController userController;
 
     @Test
-    void findAllUsers_whenInvoked_thenReturnUserDtoCollectionInBody() {
+    protected void findAllUsers_whenInvoked_thenReturnUserDtoCollectionInBody() {
         List<UserDto> expectedUsers = List.of(new UserDto());
         Mockito.when(userDbService.findAll()).thenReturn(List.of(new User()));
 
@@ -33,7 +33,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void findUserById_whenInvoked_thenReturnUserDto() {
+    protected void findUserById_whenInvoked_thenReturnUserDto() {
         User user = new User();
         user.setId(1L);
         user.setEmail("email@email.ru");
@@ -49,7 +49,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void deleteUserById_whenInvoked_thenReturnMessage() {
+    protected void deleteUserById_whenInvoked_thenReturnMessage() {
         String expectedMessage = "{\"message\":\"Пользователь с id - 1, удалил свой аккаунт\"}";
         Mockito.when(userDbService.deleteUserById(1L))
                 .thenReturn("Пользователь с id - " +  1L+ ", удалил свой аккаунт");
@@ -60,7 +60,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void create_whenInvoked_thenReturnUserDtoWithSameFieldsAsInUserRequest() {
+    protected void create_whenInvoked_thenReturnUserDtoWithSameFieldsAsInUserRequest() {
         UserRequest userRequest = new UserRequest();
         userRequest.setEmail("gmail@gmail.ru");
         userRequest.setName("name");
@@ -76,7 +76,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void update_whenInvoked_thenReturnUserDtoWithSameFieldsAsInUserRequest() {
+    protected void update_whenInvoked_thenReturnUserDtoWithSameFieldsAsInUserRequest() {
         UserRequest userRequest = new UserRequest();
         userRequest.setEmail("gmail@gmail.ru");
         userRequest.setName("name");

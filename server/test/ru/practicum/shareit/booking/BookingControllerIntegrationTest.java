@@ -45,7 +45,7 @@ public class BookingControllerIntegrationTest {
 
     @SneakyThrows
     @Test
-    void getBookingById() {
+    protected void getBookingById() {
         long userId = 1L;
         long bookingId = 1L;
         Booking booking = new Booking();
@@ -64,7 +64,7 @@ public class BookingControllerIntegrationTest {
 
     @SneakyThrows
     @Test
-    void create() {
+    protected void create() {
         long userId = 1L;
         BookingRequest bookingRequest = new BookingRequest();
         bookingRequest.setItemId(1L);

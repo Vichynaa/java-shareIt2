@@ -28,7 +28,7 @@ public class BookingControllerTest {
     private BookingController bookingController;
 
     @Test
-    void create_whenInvoked_thenReturnBookingDto() {
+    protected void create_whenInvoked_thenReturnBookingDto() {
         Long userId = 1L;
         BookingRequest bookingRequest = new BookingRequest();
         Booking booking = new Booking();
@@ -47,7 +47,7 @@ public class BookingControllerTest {
     }
 
     @Test
-    void answer_whenInvoked_thenReturnBookingDto() {
+    protected void answer_whenInvoked_thenReturnBookingDto() {
         long userId = 1L;
         long bookingId = 1L;
         Booking booking = new Booking();
@@ -65,7 +65,7 @@ public class BookingControllerTest {
     }
 
     @Test
-    void getBookingById_whenInvoked_thenReturnBookingDto() {
+    protected void getBookingById_whenInvoked_thenReturnBookingDto() {
         long userId = 1L;
         long bookingId = 1L;
         Booking booking = new Booking();
@@ -84,7 +84,7 @@ public class BookingControllerTest {
     }
 
     @Test
-    void getBookingsByRequesterId_whenInvoked_thenReturnBookingDtos() {
+    protected void getBookingsByRequesterId_whenInvoked_thenReturnBookingDtos() {
         long userId = 1L;
         Booking booking = new Booking();
         booking.setId(1L);
@@ -103,7 +103,7 @@ public class BookingControllerTest {
     }
 
     @Test
-    void getBookingsByOwnerId_whenInvoked_thenReturnBookingDtos() {
+    protected void getBookingsByOwnerId_whenInvoked_thenReturnBookingDtos() {
         long userId = 1L;
         Booking booking = new Booking();
         booking.setId(1L);

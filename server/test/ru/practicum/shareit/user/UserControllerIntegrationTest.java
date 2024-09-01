@@ -38,7 +38,7 @@ public class UserControllerIntegrationTest {
 
     @SneakyThrows
     @Test
-    void findUserById() {
+    protected void findUserById() {
         long userId = 0L;
 
         Mockito.when(userService.findUserById(userId)).thenReturn(new User());
@@ -50,7 +50,7 @@ public class UserControllerIntegrationTest {
 
     @SneakyThrows
     @Test
-    void create() {
+    protected void create() {
         UserRequest userToCreate = new UserRequest();
         User user = new User();
         Mockito.when(userService.create(userToCreate)).thenReturn(user);

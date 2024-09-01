@@ -21,7 +21,7 @@ public class BookingController {
     private final BookingClient bookingClient;
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestHeader("X-Sharer-User-Id") Long userId, @RequestBody BookingRequest bookingRequest) {
+    public ResponseEntity<Object> create(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @RequestBody BookingRequest bookingRequest) {
         log.info("POST /booking - добавление запроса пользователем с id - {}", userId);
         if (bookingRequest.getItemId() == null) {
             log.error("Не указан id предмета");
@@ -41,25 +41,25 @@ public class BookingController {
     }
 
     @PatchMapping("/{bookingId}")
-    public ResponseEntity<Object> answer(@RequestHeader("X-Sharer-User-Id") Long userId, @PathVariable Long bookingId, @RequestParam Optional<Boolean> approved) {
+    public ResponseEntity<Object> answer(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @PathVariable Long bookingId, @RequestParam Optional<Boolean> approved) {
         log.info("PATCH /bookings/{}", userId);
         return bookingClient.setApproved(approved, bookingId, userId);
     }
 
     @GetMapping("/{bookingId}")
-    public ResponseEntity<Object> getBookingById(@RequestHeader("X-Sharer-User-Id") Long userId, @PathVariable Long bookingId) {
+    public ResponseEntity<Object> getBookingById(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @PathVariable Long bookingId) {
         log.info("GET /bookings/{}", bookingId);
         return bookingClient.getBookingById(bookingId, userId);
     }
 
     @GetMapping
-    public ResponseEntity<Object> getBookingsByRequesterId(@RequestHeader("X-Sharer-User-Id") Long userId, @RequestParam Optional<String> status) {
+    public ResponseEntity<Object> getBookingsByRequesterId(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @RequestParam Optional<String> status) {
         log.info("GET /bookings by Requester Id");
         return bookingClient.getBookingsByRequester(userId, status);
     }
 
     @GetMapping("/owner")
-    public ResponseEntity<Object> getBookingsByOwnerId(@RequestHeader("X-Sharer-User-Id") Long userId, @RequestParam Optional<String> status) {
+    public ResponseEntity<Object> getBookingsByOwnerId(@RequestHeader("${shareIt.headers.userHeader}") Long userId, @RequestParam Optional<String> status) {
         log.info("GET /bookings by Owner Id");
         return bookingClient.getBookingsByOwner(userId, status);
     }

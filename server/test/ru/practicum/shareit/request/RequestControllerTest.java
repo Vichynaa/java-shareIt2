@@ -22,7 +22,7 @@ public class RequestControllerTest {
     private ItemRequestController itemRequestController;
 
     @Test
-    void create_whenInvoked_thenReturnItemRequestDto() {
+    protected void create_whenInvoked_thenReturnItemRequestDto() {
         long userId = 1L;
         User user = new User();
         user.setId(1L);
@@ -42,7 +42,7 @@ public class RequestControllerTest {
     }
 
     @Test
-    void getRequestsByUser_whenInvoked_thenReturnItemRequestDto() {
+    protected void getRequestsByUser_whenInvoked_thenReturnItemRequestDto() {
         Long userId = 1L;
         User user = new User();
         user.setId(userId);
@@ -62,7 +62,7 @@ public class RequestControllerTest {
     }
 
     @Test
-    void getOthersUsersRequests_whenInvoked_thenReturnItemRequestDto() {
+    protected void getOthersUsersRequests_whenInvoked_thenReturnItemRequestDto() {
         Long userId = 1L;
         User user = new User();
         user.setId(userId);
@@ -81,7 +81,7 @@ public class RequestControllerTest {
     }
 
     @Test
-    void getRequestById_whenInvoked_thenReturnItemRequestDto() {
+    protected void getRequestById_whenInvoked_thenReturnItemRequestDto() {
         Long requestId = 1L;
         User user = new User();
         user.setId(requestId);

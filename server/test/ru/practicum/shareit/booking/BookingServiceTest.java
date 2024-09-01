@@ -35,7 +35,7 @@ public class BookingServiceTest {
     private ArgumentCaptor<Booking> bookingArgumentCaptor;
 
     @Test
-    void createRequest_whenValidationIsCorrect_thenReturnBooking() {
+    protected void createRequest_whenValidationIsCorrect_thenReturnBooking() {
         Long userId = 1L;
         Long itemId = 1L;
         BookingRequest bookingRequest = new BookingRequest();
@@ -57,7 +57,7 @@ public class BookingServiceTest {
         Assertions.assertEquals(bookingRequest.getItemId(), request.getItem().getId());;
     }
     @Test
-    void createRequest_whenItemUnavailable_thenReturnValidationException() {
+    protected void createRequest_whenItemUnavailable_thenReturnValidationException() {
         long userId = 1L;
         long itemId = 1L;
         BookingRequest bookingRequest = new BookingRequest();
@@ -77,7 +77,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    void setApproved_whenBookingExistsAndOwner_thenUpdateBookingStatus() {
+    protected void setApproved_whenBookingExistsAndOwner_thenUpdateBookingStatus() {
         long bookingId = 1L;
         long userId = 1L;
         Booking booking = new Booking();
@@ -99,7 +99,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    void setApproved_whenBookingDoesNotExist_thenReturnConflictException() {
+    protected void setApproved_whenBookingDoesNotExist_thenReturnConflictException() {
         long bookingId = 1L;
         long userId = 1L;
 
@@ -109,7 +109,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    void getBookingById_whenBookingExists_thenReturnBooking() {
+    protected void getBookingById_whenBookingExists_thenReturnBooking() {
         long bookingId = 1L;
         long userId = 1L;
         Booking booking = new Booking();
@@ -127,7 +127,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    void getBookingById_whenBookingNotFound_thenReturnConflictException() {
+    protected void getBookingById_whenBookingNotFound_thenReturnConflictException() {
         long bookingId = 1L;
         long userId = 1L;
         Booking booking = new Booking();
@@ -141,7 +141,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    void getBookingsByRequester_whenStatusAll_thenReturnBookings() {
+    protected void getBookingsByRequester_whenStatusAll_thenReturnBookings() {
         long userId = 1L;
         Booking booking = new Booking();
         booking.setId(1L);
@@ -156,7 +156,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    void getBookingsByOwner_whenInvalidStatus_thenReturnNotFoundException() {
+    protected void getBookingsByOwner_whenInvalidStatus_thenReturnNotFoundException() {
         long userId = 1L;
 
         Mockito.when(userRepository.existsById(userId)).thenReturn(true);

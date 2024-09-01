@@ -47,7 +47,7 @@ public class ItemServiceTest {
     private ArgumentCaptor<Item> itemArgumentCaptor;
 
     @Test
-    public void create_whenUserFound_thenReturnItem() {
+    protected void create_whenUserFound_thenReturnItem() {
         Long userId = 1L;
         ItemRequest itemRequest = new ItemRequest();
         itemRequest.setName("name");
@@ -72,7 +72,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    public void create_whenUserNotFound_thenReturnNotFoundException() {
+    protected void create_whenUserNotFound_thenReturnNotFoundException() {
         Long userId = 1L;
         ItemRequest itemRequest = new ItemRequest();
         itemRequest.setName("name");
@@ -94,7 +94,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void update_whenItemFound_thenReturnItem() {
+    protected void update_whenItemFound_thenReturnItem() {
         long userId = 1L;
         long itemId = 1L;
         ItemRequest itemRequest = new ItemRequest();
@@ -123,7 +123,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void update_whenItemNotFound_thenReturnNotFoundException() {
+    protected void update_whenItemNotFound_thenReturnNotFoundException() {
         long userId = 1L;
         long itemId = 1L;
         ItemRequest itemRequest = new ItemRequest();
@@ -140,7 +140,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void update_whenUserNotFound_thenReturnNotFoundException() {
+    protected void update_whenUserNotFound_thenReturnNotFoundException() {
         long userId = 1L;
         long itemId = 1L;
         ItemRequest itemRequest = new ItemRequest();
@@ -159,7 +159,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void update_whenUserIsNotOwner_thenReturnNotFoundException() {
+    protected void update_whenUserIsNotOwner_thenReturnNotFoundException() {
         long userId = 1L;
         long itemId = 1L;
         ItemRequest itemRequest = new ItemRequest();
@@ -180,7 +180,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void getItemsByUser_WhenUserFound_thenReturnListOfItems() {
+    protected void getItemsByUser_WhenUserFound_thenReturnListOfItems() {
         Long userId = 1L;
         Item item = new Item();
         item.setDescription("description");
@@ -195,7 +195,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void getItemsByUser_WhenUserNotFound_thenReturnListOfItems() {
+    protected void getItemsByUser_WhenUserNotFound_thenReturnListOfItems() {
         Long userId = 1L;
         Item item = new Item();
         item.setDescription("description");
@@ -207,7 +207,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void getItemById_WhenUserFound_thenReturnListOfItems() {
+    protected void getItemById_WhenUserFound_thenReturnListOfItems() {
         Long itemId = 1L;
         Item item = new Item();
         item.setDescription("description");
@@ -222,7 +222,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void getItemById_WhenItemNotFound_thenReturnListOfItems() {
+    protected void getItemById_WhenItemNotFound_thenReturnListOfItems() {
         Long itemId = 1L;
         Mockito.when(itemRepository.existsById(itemId)).thenReturn(false);
 
@@ -231,7 +231,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void search_whenTextIsNotBlank_thenReturnItems() {
+    protected void search_whenTextIsNotBlank_thenReturnItems() {
         Long userId = 1L;
         String searchText = "item";
         Item item = new Item();
@@ -246,7 +246,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void search_whenTextIsBlank_thenReturnItems() {
+    protected void search_whenTextIsBlank_thenReturnItems() {
         Long userId = 1L;
         String searchText = "";
 
@@ -257,7 +257,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void createComment_whenValidationIsCorrect_thenReturnComment() {
+    protected void createComment_whenValidationIsCorrect_thenReturnComment() {
         Long userId = 1L;
         Long itemId = 1L;
         Item item = new Item();
@@ -286,7 +286,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    void createComment_whenValidationIsNotCorrect_thenReturnComment() {
+    protected void createComment_whenValidationIsNotCorrect_thenReturnComment() {
         Long userId = 1L;
         Long itemId = 1L;
         Item item = new Item();
@@ -306,7 +306,4 @@ public class ItemServiceTest {
 
         Assertions.assertThrows(ValidationException.class, () -> itemDbService.createComment(commentRequest, userId, itemId));
     }
-
-
-
 }

@@ -20,7 +20,7 @@ public class BookingDtoJsonTest {
     private final JacksonTester<BookingDto> json;
 
     @Test
-    void testBookingDto() throws Exception {
+    protected void testBookingDto() throws Exception {
         BookingDto bookingDto = getBookingDto();
 
         JsonContent<BookingDto> result = json.write(bookingDto);

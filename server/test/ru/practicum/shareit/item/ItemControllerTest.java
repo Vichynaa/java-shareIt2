@@ -28,7 +28,7 @@ public class ItemControllerTest {
     private ItemController itemController;
 
     @Test
-    void create_whenInvoked_thenReturnItemDto() {
+    protected void create_whenInvoked_thenReturnItemDto() {
         long userId = 1L;
         ItemRequest itemRequest = new ItemRequest();
         itemRequest.setName("name");
@@ -46,7 +46,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    void update_whenInvoked_thenReturnItemDto() {
+    protected void update_whenInvoked_thenReturnItemDto() {
         long userId = 1L;
         long itemId = 1L;
         ItemRequest itemRequest = new ItemRequest();
@@ -65,7 +65,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    void getItemById_whenInvoked_thenReturnItemDto() {
+    protected void getItemById_whenInvoked_thenReturnItemDto() {
         long itemId = 1L;
         Item item = new Item();
         item.setName("name");
@@ -81,7 +81,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    void getItemsByUser_whenInvoked_thenReturnItemDto() {
+    protected void getItemsByUser_whenInvoked_thenReturnItemDto() {
         long userId = 1L;
         Item item = new Item();
         item.setName("name");
@@ -99,7 +99,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    void searchItems_whenInvoked_thenReturnItemDto() {
+    protected void searchItems_whenInvoked_thenReturnItemDto() {
         long userId = 1L;
         String searchText = "searchText";
         Item item = new Item();
@@ -118,7 +118,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    void createComments_whenInvoked_thenReturnCommentDto() {
+    protected void createComments_whenInvoked_thenReturnCommentDto() {
         long itemId = 1L;
         long userId = 1L;
         CommentRequest commentRequest = new CommentRequest();

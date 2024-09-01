@@ -19,7 +19,7 @@ public class CommentDtoJsonTest {
     private final JacksonTester<CommentDto> json;
 
     @Test
-    void testCommentDto() throws Exception {
+    protected void testCommentDto() throws Exception {
         CommentDto comment = new CommentDto();
         comment.setId(1L);
         comment.setText("item");
