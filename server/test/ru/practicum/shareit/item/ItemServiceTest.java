@@ -181,7 +181,7 @@ public class ItemServiceTest {
 
     @Test
     protected void getItemsByUser_WhenUserFound_thenReturnListOfItems() {
-        Long userId = 1L;
+        long userId = 1L;
         Item item = new Item();
         item.setDescription("description");
 
